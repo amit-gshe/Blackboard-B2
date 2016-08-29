@@ -6,10 +6,10 @@ apply plugin: "maven"
 group "blackboard.plugin"
 version "1.0-SNAPSHOT"
 
-project.ext {
+ext {
   learnVersion = "9.1.110082.0"
-  springVersion = "3.1.1.RELEASE"
-  hibernateVersion = "4.1.10.Final"
+  springVersion = "4.3.2.RELEASE"
+  hibernateVersion = "5.2.2.Final"
 }
 
 repositories {
@@ -26,27 +26,27 @@ configurations {
 // define the project's dependencies
 dependencies {
   // providedCompile dependencies are libraries needed to build, but should not be included in the B2 WAR.
-  providedCompile( "blackboard.platform:bb-platform:$ext.learnVersion" ) { transitive = false }
-  providedCompile( "blackboard.platform:bb-cms-admin:$ext.learnVersion" ) { transitive = false }
-  providedCompile( "blackboard.platform:bb-taglibs:$ext.learnVersion" ) { transitive = false }
+  providedCompile( "blackboard.platform:bb-platform:$learnVersion" ) { transitive = false }
+  providedCompile( "blackboard.platform:bb-cms-admin:$learnVersion" ) { transitive = false }
+  providedCompile( "blackboard.platform:bb-taglibs:$learnVersion" ) { transitive = false }
 
-  compile( "blackboard.platform:bb-spring-webapi:$ext.learnVersion" ) { transitive = false }
+  compile( "blackboard.platform:bb-spring-webapi:$learnVersion" ) { transitive = false }
 
-  compile "org.springframework:spring-aop:$ext.springVersion",
-          "org.springframework:spring-asm:$ext.springVersion",
-          "org.springframework:spring-beans:$ext.springVersion",
-          "org.springframework:spring-context:$ext.springVersion",
-          "org.springframework:spring-core:$ext.springVersion",
-          "org.springframework:spring-expression:$ext.springVersion",
-          "org.springframework:spring-web:$ext.springVersion",
-          "org.springframework:spring-webmvc:$ext.springVersion",
-          "org.springframework:spring-context-support:$ext.springVersion",
-          "org.springframework:spring-jdbc:$ext.springVersion",
-          "org.springframework:spring-orm:$ext.springVersion",
-          "org.springframework:spring-tx:$ext.springVersion"
+  compile "org.springframework:spring-aop:$springVersion",
+          "org.springframework:spring-asm:$springVersion",
+          "org.springframework:spring-beans:$springVersion",
+          "org.springframework:spring-context:$springVersion",
+          "org.springframework:spring-core:$springVersion",
+          "org.springframework:spring-expression:$springVersion",
+          "org.springframework:spring-web:$springVersion",
+          "org.springframework:spring-webmvc:$springVersion",
+          "org.springframework:spring-context-support:$springVersion",
+          "org.springframework:spring-jdbc:$springVersion",
+          "org.springframework:spring-orm:$springVersion",
+          "org.springframework:spring-tx:$springVersion"
 
-  compile( "org.hibernate:hibernate-core:$ext.hibernateVersion" ) { transitive = true }
-  compile "org.hibernate:hibernate-entitymanager:$ext.hibernateVersion"
+  compile( "org.hibernate:hibernate-core:$hibernateVersion" ) { transitive = true }
+  compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
 
   runtime "org.javassist:javassist:3.17.1-GA",
           "dom4j:dom4j:1.6.1"
@@ -62,5 +62,5 @@ task deployB2( dependsOn: "war" ) << {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.5'
+  gradleVersion = '3.0'
 }
