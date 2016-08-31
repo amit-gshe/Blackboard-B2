@@ -10,7 +10,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring.xml")
-@WebAppConfiguration
 public class HelloFooControllerTest {
 
   @Test

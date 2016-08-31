@@ -38,29 +38,27 @@
 
 	<!-- Hibernate session factory -->
 	<bean id="sessionFactory"
-		class="org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
-
-	<!-- Configuration for JPA -->
-	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
-	<bean id="jpaVendorAdapter"
-		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="hibernatePersistenceUnit" />
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="hibernateDataSource" />
-		<property name="packagesToScan" value="app.model" />
-		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
-		<property name="jpaDialect" ref="jpaDialect" />
+		<property name="annotatedClasses">
+			<list>
+				<value>app.model.Foo</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.show_sql=true
+			</value>
+		</property>
 	</bean>
 
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
 	<bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<!-- Basic resolver for mapping to the proper JSPs -->

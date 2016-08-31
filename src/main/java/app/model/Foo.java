@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -13,15 +12,15 @@ import javax.persistence.Table;
 public class Foo {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "cx_springdemo_foo_seq")
-  @SequenceGenerator(name = "cx_springdemo_foo_seq", sequenceName = "cx_springdemo_foo_seq")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "foo_id")
   private Long id;
+  
   @Column(name = "name")
   private String name;
+  
   @Column(name = "value")
   private String value;
-
 
   public Long getId() {
     return id;
@@ -39,7 +38,6 @@ public class Foo {
   public void setName(String name) {
     this.name = name;
   }
-
 
   public String getValue() {
     return value;

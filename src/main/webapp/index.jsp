@@ -12,12 +12,10 @@
 	</bbNG:pageHeader>
 	<h2>Spring Demo</h2>
 	<ul>
-		<img src="/img/face.png" />
 		<li><a href="helloWorld">Hello World</a>
 		<li><a href="hello">Learn API Example</a>
 		<li><a href="course_users?cid=_2_1">Advanced Learn API
 				Example</a>
 		<li><a href="fooController">Hibernate Example</a>
-		<li><a href="fooJPAController">JPA Example</a>
 	</ul>
 </bbNG:learningSystemPage>
