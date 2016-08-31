@@ -46,9 +46,8 @@ dependencies {
 
   compile( "org.hibernate:hibernate-core:$hibernateVersion" ) { transitive = true }
   compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
-
-  runtime "org.javassist:javassist:3.17.1-GA",
-          "dom4j:dom4j:1.6.1"
+  compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.8.1'
+  runtime "dom4j:dom4j:1.6.1"
 
   buildUtils "org.oscelot:b2deploy-task:0.1.0"
 }
@@ -57,7 +56,7 @@ dependencies {
 // Add a task to deploy a B2 using starting block
 task deployB2( dependsOn: "war" ) << {
       ant.taskdef( name: "b2deploy", classname: "org.oscelot.ant.B2DeployTask", classpath: project.configurations.buildUtils.asPath )
-      ant.b2deploy( localfilepath: project.war.archivePath, host: System.getProperty("server"), courseorgavailable: 'true', clean: 'true' )
+      //ant.b2deploy( localfilepath: project.war.archivePath, host: System.getProperty("server"), courseorgavailable: 'true', clean: 'true' )
 }
 
 task wrapper(type: Wrapper) {

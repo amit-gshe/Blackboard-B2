@@ -5,3 +5,4 @@
 .DS*
 .idea/
 bin/
+/build/
