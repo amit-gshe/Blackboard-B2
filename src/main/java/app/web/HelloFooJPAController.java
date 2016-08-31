@@ -1,26 +1,26 @@
-package blackboard.plugin.springdemo.spring.web;
+package app.web;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import blackboard.plugin.springdemo.model.Foo;
+import app.model.Foo;
 
 @Controller
 public class HelloFooJPAController
 {
 
   // EM factory reference for our code
-  @Autowired
+  @PersistenceUnit(unitName="hibernatePersistenceUnit")
   private EntityManagerFactory _entityManagerFactory;
 
   @RequestMapping( "/fooJPAController" )

@@ -1,4 +1,4 @@
-package blackboard.plugin.springdemo.spring.web;
+package app.web;
 
 import blackboard.data.user.User;
 import blackboard.platform.spring.beans.annotations.ContextValue;

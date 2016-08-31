@@ -1,4 +1,4 @@
-package blackboard.plugin.springdemo.spring.web;
+package app.web;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,33 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns="http://www.blackboard.com/bb-manifest-plugin"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.blackboard.com/bb-manifest-plugin http://fibbba.medu.com/xsd/bb-manifest-plugin.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns="http://www.blackboard.com/bb-manifest-plugin.xsd">
 	<plugin>
-
 		<name value="Spring Demo" />
-		<handle value="SpringDemo" />
+		<handle value="springdemo" />
 		<description value="Spring Demo" />
-		<default-locale value="en_US" />
-
 		<version value="1.0" />
 		<requires>
-			<bbversion value="9.1.130000.0" />
+			<bbversion value="9.1.0" />
 		</requires>
-
 		<vendor>
-			<id value="bb" />
-			<name value="Blackboard Inc." />
-			<url value="http://www.blackboard.com/" />
-			<description value="Blackboard Learn" />
+			<id value="cx" />
+			<name value="Cxria Inc." />
+			<url value="http://www.cxria.com/" />
+			<description value="Cxria" />
 		</vendor>
-
 		<schema-dirs>
 			<schema-dir dir-name="spring" />
 		</schema-dirs>
-
 		<http-actions>
 			<config value="index.jsp" />
 		</http-actions>
+		
 		<content-handlers>
 			<content-handler>
 				<name value="TestContent"/>
@@ -36,28 +29,25 @@
 					<create value="index.jsp" />
 				</http-actions>
 				<icons>
-				    <toolbar value="img/face.png"/>
-				    <listitem value="img/face.png"/>
+				    <toolbar value="/img/face.png"/>
+				    <listitem value="/img/face.png"/>
 				</icons>
 				<types>
 					<type>
 						<action-type value="mashup" />
 					</type>
-					<type>
-						<action-type value="image" />
-					</type>
 				</types>
 			</content-handler>
 		</content-handlers>
 		<application-defs>
-			<application handle="spring-demo" type="shared" is-sys-tool="true"
+			<application handle="springdemo" type="shared" is-sys-tool="true"
 				is-course-tool="true" is-org-tool="true" is-group-tool="false"
 				use-ssl="false" name="Test" can-allow-guest="false" small-icon=""
 				large-icon="">
 				<description>A demo</description>
 				<links>
 					<link>
-						<type value="demo" />
+						<type value="course_tool" />
 						<name value="test page" />
 						<url value="index.jsp" />
 						<description value="A spring demo" />
