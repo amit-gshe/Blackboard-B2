@@ -11,73 +11,22 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
+        
+	<import resource="spring-mvc.xml"/>
+	<import resource="spring-db.xml"/>
+	
 	<!-- Handles configuring the bean factory to handle auto-wiring some default 
 		Learn types like Loaders, services and extensions. -->
-	<bean id="customAutowireBeanFactoryProcessor"
-		class="blackboard.platform.spring.beans.CustomAutowireBeanFactoryProcessor" />
+<!-- 	<bean id="customAutowireBeanFactoryProcessor"
+		class="blackboard.platform.spring.beans.CustomAutowireBeanFactoryProcessor" /> -->
 
 	<!-- Tells Spring that we're using annotations on our classes. -->
 	<context:annotation-config />
 
-	<!-- Include the default set of argument resolvers to handle Id objects, 
-		standard Learn types like User and Context values. -->
-	<mvc:annotation-driven>
-		<mvc:argument-resolvers>
-			<bean
-				class="blackboard.platform.spring.web.resolvers.DefaultArgumentResolver" />
-		</mvc:argument-resolvers>
-	</mvc:annotation-driven>
-
 	<!-- Tells Spring to scan the classpath for component annotations so it 
 		can build the references. -->
 	<context:component-scan base-package="app" />
-
-	<!-- Configured datasource for the hibernate/jpa examples -->
-	<bean id="hibernateDataSource" class="blackboard.platform.spring.jdbc.LearnDataSource" />
-
-	<!-- Hibernate session factory -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<property name="dataSource" ref="hibernateDataSource" />
-		<property name="annotatedClasses">
-			<list>
-				<value>app.model.Foo</value>
-			</list>
-		</property>
-		<property name="hibernateProperties">
-			<value>
-				hibernate.show_sql=true
-			</value>
-		</property>
-	</bean>
-
-	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
-	<bean id="persistenceExceptionTranslationPostProcessor"
-		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-	
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
-	<!-- Basic resolver for mapping to the proper JSPs -->
-	<bean id="primaryViewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
-		<property name="order" value="2" />
-		<property name="contentType" value="text/html; charset=UTF-8" />
-	</bean>
-
-	<!-- Include the default set of interceptors to handle XSRF, bundle management 
-		and user authorization. -->
-	<mvc:interceptors>
-		<bean class="blackboard.platform.spring.web.interceptors.DefaultInterceptor" />
-	</mvc:interceptors>
-
 	<!-- Handle exceptions generically -->
 	<bean id="genericExceptionResolver"
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">

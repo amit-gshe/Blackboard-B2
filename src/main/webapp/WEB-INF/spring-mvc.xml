@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- Include the default set of argument resolvers to handle Id objects, 
+		standard Learn types like User and Context values. -->
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean
+				class="blackboard.platform.spring.web.resolvers.DefaultArgumentResolver" />
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+
+	<bean id="methodValidationPostProcessor"
+		class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"></bean>
+
+	<!-- Include the default set of interceptors to handle XSRF, bundle management 
+		and user authorization. -->
+	<mvc:interceptors>
+		<bean class="blackboard.platform.spring.web.interceptors.DefaultInterceptor" />
+	</mvc:interceptors>
+
+	<!-- Basic resolver for mapping to the proper JSPs -->
+	<bean id="primaryViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="2" />
+		<property name="contentType" value="text/html; charset=UTF-8" />
+	</bean>
+
+</beans>
