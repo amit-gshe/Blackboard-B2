@@ -10,7 +10,6 @@
 	<bbNG:pageHeader>
 		<bbNG:pageTitleBar title="Spring Demo"></bbNG:pageTitleBar>
 	</bbNG:pageHeader>
-	<h2>Spring Demo</h2>
 	<ul>
 		<li><a href="helloWorld">Hello World</a>
 		<li><a href="hello">Learn API Example</a>

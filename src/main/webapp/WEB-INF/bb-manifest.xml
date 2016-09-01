@@ -39,22 +39,6 @@
 				</types>
 			</content-handler>
 		</content-handlers>
-		<application-defs>
-			<application handle="springdemo" type="shared" is-sys-tool="true"
-				is-course-tool="true" is-org-tool="true" is-group-tool="false"
-				use-ssl="false" name="Test" can-allow-guest="false" small-icon=""
-				large-icon="">
-				<description>A demo</description>
-				<links>
-					<link>
-						<type value="course_tool" />
-						<name value="test page" />
-						<url value="index.jsp" />
-						<description value="A spring demo" />
-					</link>
-				</links>
-			</application>
-		</application-defs>
 		<permissions>
 			<permission type="persist" name="*"
 				actions="create,modify,delete,persist" />
