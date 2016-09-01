@@ -48,6 +48,7 @@ dependencies {
   	      "junit:junit:4.12",
 		  "org.hibernate:hibernate-core:$hibernateVersion",
   		  "org.hibernate:hibernate-entitymanager:$hibernateVersion",
+  		  "org.hibernate:hibernate-validator:5.2.4.Final",
   		  "com.fasterxml.jackson.core:jackson-core:2.8.1",
   		  "dom4j:dom4j:1.6.1"
 
