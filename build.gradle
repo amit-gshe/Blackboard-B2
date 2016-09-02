@@ -49,12 +49,13 @@ dependencies {
           "org.springframework:spring-jdbc:$springVersion",
           "org.springframework:spring-orm:$springVersion",
           "org.springframework:spring-tx:$springVersion",
+          "org.springframework:spring-websocket:$springVersion",
           "org.springframework:spring-test:$springVersion",
-  	      "junit:junit:4.12",
 		  "org.hibernate:hibernate-core:$hibernateVersion",
   		  "org.hibernate:hibernate-entitymanager:$hibernateVersion",
   		  "org.hibernate:hibernate-validator:5.2.4.Final",
   		  "com.fasterxml.jackson.core:jackson-databind:2.8.1",
+  	      "junit:junit:4.12",
   		  "dom4j:dom4j:1.6.1"
 
   buildUtils "org.oscelot:b2deploy-task:0.1.0"
