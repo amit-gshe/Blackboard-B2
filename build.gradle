@@ -26,6 +26,7 @@ repositories {
 
 configurations {
   buildUtils
+  runtime.exclude group: "commons-logging", module: "commons-logging"
 }
 
 // define the project's dependencies
@@ -55,6 +56,8 @@ dependencies {
   		  "org.hibernate:hibernate-entitymanager:$hibernateVersion",
   		  "org.hibernate:hibernate-validator:5.2.4.Final",
   		  "com.fasterxml.jackson.core:jackson-databind:2.8.1",
+  		  "org.slf4j:jcl-over-slf4j:1.7.21",
+  		  "ch.qos.logback:logback-classic:1.1.7",
   	      "junit:junit:4.12",
   		  "dom4j:dom4j:1.6.1"
 

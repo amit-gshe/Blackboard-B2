@@ -3,6 +3,8 @@ package app.web;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,8 @@ import blackboard.platform.spring.web.annotations.IdParam;
 public class HelloCourseController
 {
 
+  private static Logger logger = LoggerFactory.getLogger(HelloCourseController.class);
+  
   // Annotates a variable so that the Spring container will 
   // attempt to wire the reference for you automatically.
   @Autowired
@@ -45,6 +49,7 @@ public class HelloCourseController
     for ( CourseMembership member : members )
     {
       users.add( _userLoader.loadById( member.getUserId() ) );
+      logger.debug("CourseMembership: {}", member.getIntroduction());
     }
     mv.addObject( "users", users );
     
