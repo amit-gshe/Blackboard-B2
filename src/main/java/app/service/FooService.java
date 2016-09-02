@@ -2,46 +2,26 @@ package app.service;
 
 import java.util.List;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import app.model.Foo;
-import blackboard.db.logging.Logger;
 
 @Service
+@Transactional
 public class FooService {
 
-  private static Logger logger = Logger.getInstance();
-  
+  @Autowired
   private SessionFactory sessionFactory;
 
-  public FooService(SessionFactory _sessionFactory) {
-    this.sessionFactory = _sessionFactory;
-  }
-
   public void save(Foo foo) {
-    Session s = sessionFactory.openSession();
-    Transaction tx = s.beginTransaction();
-    try {
-      s.save(foo);
-      tx.commit();
-    } catch (Exception e) {
-      logger.error(e.getMessage()+",caused by: "+e.getCause().getMessage());
-      tx.rollback();
-    } finally {
-      s.close();
-    }
+    sessionFactory.getCurrentSession().save(foo);
   }
 
   @SuppressWarnings("unchecked")
   public List<Foo> fetchAll() {
-    Session s = sessionFactory.openSession();
-    try {
-      return s.createQuery("from Foo").getResultList();
-    } finally {
-      s.close();
-    }
+    return sessionFactory.getCurrentSession().createQuery("from Foo").getResultList();
   }
 }

@@ -1,14 +1,19 @@
 apply plugin: "java"
 apply plugin: "war"
+apply plugin: 'eclipse'
 apply plugin: "maven"
 
 // define the version for the project when publishing to maven
 group "blackboard.plugin"
 version "1.0-SNAPSHOT"
-
+eclipse {
+    classpath {
+       downloadSources=true
+    }
+}
 ext {
   learnVersion = "9.1.201510.1171621"
-  springVersion = "4.3.2.RELEASE"
+  springVersion = "4.2.5.RELEASE"
   hibernateVersion = "5.2.2.Final"
 }
 
@@ -49,7 +54,7 @@ dependencies {
 		  "org.hibernate:hibernate-core:$hibernateVersion",
   		  "org.hibernate:hibernate-entitymanager:$hibernateVersion",
   		  "org.hibernate:hibernate-validator:5.2.4.Final",
-  		  "com.fasterxml.jackson.core:jackson-core:2.8.1",
+  		  "com.fasterxml.jackson.core:jackson-databind:2.8.1",
   		  "dom4j:dom4j:1.6.1"
 
   buildUtils "org.oscelot:b2deploy-task:0.1.0"

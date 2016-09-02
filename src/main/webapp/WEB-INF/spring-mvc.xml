@@ -20,7 +20,8 @@
 				class="blackboard.platform.spring.web.resolvers.DefaultArgumentResolver" />
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
-
+	<mvc:default-servlet-handler/>
+	<bean id="jacksonObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
 	<bean id="methodValidationPostProcessor"
 		class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"></bean>
 

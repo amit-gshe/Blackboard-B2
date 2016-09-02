@@ -17,8 +17,8 @@
 	
 	<!-- Handles configuring the bean factory to handle auto-wiring some default 
 		Learn types like Loaders, services and extensions. -->
-<!-- 	<bean id="customAutowireBeanFactoryProcessor"
-		class="blackboard.platform.spring.beans.CustomAutowireBeanFactoryProcessor" /> -->
+	<bean id="customAutowireBeanFactoryProcessor"
+		class="blackboard.platform.spring.beans.CustomAutowireBeanFactoryProcessor" />
 
 	<!-- Tells Spring that we're using annotations on our classes. -->
 	<context:annotation-config />

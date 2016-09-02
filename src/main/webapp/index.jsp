@@ -3,6 +3,9 @@
 <%@ taglib uri="/bbNG" prefix="bbNG"%>
 <%@ taglib uri="/bbUI" prefix="bbUI"%>
 <%@ taglib uri="/bbData" prefix="bbData"%>
+
+<% String URL = PlugInUtil.getUri("cx", "springdemo", ""); %>
+
 <bbNG:learningSystemPage>
 	<bbNG:breadcrumbBar>
 		<bbNG:breadcrumb>Create Item</bbNG:breadcrumb>
@@ -12,15 +15,14 @@
 		<bbNG:pageTitleBar title="Spring Demo" iconUrl="assets/img/face.png"
 			showIcon="true"></bbNG:pageTitleBar>
 	</bbNG:pageHeader>
-	<img src="/assets/img/face.png" />
-	<img src="assets/img/face.png" />
 	<ul>
 		<li><a href="helloWorld">Hello World</a>
 		<li><a href="hello">Learn API Example</a>
 		<li><a href="course_users?cid=_2_1">Advanced Learn API
 				Example</a>
 		<li><a href="fooController">Hibernate Example</a>
-		<li><a href="rest?key=key1&value=value1">rest sample</a></li>
-		<li><a href="fooController">Hibernate Example</a>
+		<li><a href="rest?key=key1&value=value1">REST Example</a></li>
+		<li><a href="rest?key=key1&value=value1">WebSocket Example</a></li>
 	</ul>
+	<img src="<%= URL %>assets/img/face.png" />
 </bbNG:learningSystemPage>
