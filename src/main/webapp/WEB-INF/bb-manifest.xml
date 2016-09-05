@@ -20,17 +20,19 @@
 		<http-actions>
 			<config value="index.jsp" />
 		</http-actions>
-		
+
 		<content-handlers>
 			<content-handler>
-				<name value="TestContent"/>
-				<handle value="resource/x-bb-test-content" />
+				<name value="Video Tool" />
+				<handle value="resource/x-cx-video" />
 				<http-actions>
-					<create value="index.jsp" />
+					<create value="/item/createPage" />
+					<modify value="/item/editPage" />
+					<view value="/item/viewPage"/>
 				</http-actions>
 				<icons>
-				    <toolbar value="/img/face.png"/>
-				    <listitem value="/img/face.png"/>
+					<toolbar value="/assets/img/face.png" />
+					<listitem value="/assets/img/face.png" />
 				</icons>
 				<types>
 					<type>

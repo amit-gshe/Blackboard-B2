@@ -35,7 +35,8 @@ dependencies {
   providedCompile( "blackboard.platform:bb-platform:$learnVersion" ) { transitive = false }
   providedCompile( "blackboard.platform:bb-cms-admin:$learnVersion" ) { transitive = false }
   providedCompile( "blackboard.platform:bb-taglibs:$learnVersion" ) { transitive = false }
-  providedCompile "org.javassist:javassist:3.20.0-GA"
+  providedCompile "org.javassist:javassist:3.20.0-GA",
+  				  "javax.servlet:javax.servlet-api:3.1.0"
   
   compile( "blackboard.platform:bb-spring-webapi:3000.1.0-rel.52" ) { transitive = false }
   
