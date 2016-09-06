@@ -1,11 +1,15 @@
 package app.web;
 
+import java.io.InputStream;
+import java.nio.charset.Charset;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import blackboard.base.FormattedText;
 import blackboard.data.ValidationException;
 import blackboard.data.content.Content;
-import blackboard.data.content.Content.RenderType;
 import blackboard.data.course.Course;
 import blackboard.data.user.User;
 import blackboard.persist.PersistenceException;
@@ -49,11 +52,15 @@ public class HelloContentController {
   @ResponseBody
   public void createContent(@ContextValue User currentUser, @ContextValue Content parentContent,
       @ContextValue Course course, @RequestParam String name, @RequestParam String body,
-      HttpServletRequest request) {
+      HttpServletRequest request) throws Exception {
     try {
       logger.debug("context user: {}", currentUser.getUserName());
       logger.debug("course: {}", course.getId().getExternalString());
       logger.debug("parent content: {}", parentContent.getId().getExternalString());
+      // test
+      InputStream is = getClass().getResourceAsStream("/template.html");
+      body = StreamUtils.copyToString(is, Charset.defaultCharset());
+      
       FormattedText fmt = FormattedText.toFormattedText(body);
       Content content = new Content();
       content.setCourseId(course.getId());
@@ -61,7 +68,6 @@ public class HelloContentController {
       content.setIsAvailable(true);
       content.setIsTracked(true);
       content.setContentHandler("resource/x-cx-video");
-      content.setRenderType(RenderType.URL);
       content.setTitle(name);
       content.setBody(fmt);
       content.setLaunchInNewWindow(true);

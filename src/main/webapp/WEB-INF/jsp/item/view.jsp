@@ -42,7 +42,7 @@
 <bbNG:learningSystemPage>
 	<bbData:context id="cxCtx">
 		<bbNG:pageHeader>
-			<bbNG:pageTitleBar title="编辑视频"></bbNG:pageTitleBar>
+			<bbNG:pageTitleBar title="查看视频"></bbNG:pageTitleBar>
 		</bbNG:pageHeader>
 		查看视频
 	</bbData:context>
