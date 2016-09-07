@@ -26,13 +26,13 @@
 				<name value="Video Tool" />
 				<handle value="resource/x-cx-video" />
 				<http-actions>
-					<create value="/item/createPage" />
-					<modify value="/item/editPage" />
-					<view value="/item/viewPage"/>
+					<create value="/item/page/create" />
+					<modify value="/item/page/modify" />
+					<view value="/item/page/view" />
 				</http-actions>
 				<icons>
-					<toolbar value="/assets/img/face.png" />
-					<listitem value="/assets/img/face.png" />
+					<toolbar value="/assets/img/item_logo.png" />
+					<listitem value="/assets/img/item_logo.png" />
 				</icons>
 				<types>
 					<type>
@@ -40,7 +40,53 @@
 					</type>
 				</types>
 			</content-handler>
+			<content-handler>
+				<name value="Video Assignment" />
+				<handle value="resource/x-cx-video-assignment" />
+				<http-actions>
+					<create value="/assignment/page/create" />
+					<modify value="/assignment/page/modify" />
+					<remove value="/assignment/page/remove" />
+					<view value="/assignment/page/view" />
+					<can-copy value="false" />
+				</http-actions>
+				<icons>
+					<toolbar value="/assets/img/item_logo.png" />
+					<listitem value="/assets/img/item_logo.png" />
+				</icons>
+				<types>
+					<type>
+						<action-type value="evaluate" />
+					</type>
+				</types>
+			</content-handler>
 		</content-handlers>
+		<application-defs>
+			<application handle="cx-video-management" is-course-tool="true" is-sys-tool="true" use-ssl="false" can-allow-guest="false"
+				name="Video Management">
+				<description>Video management</description>
+				<links>
+					<link>
+						<type value="system_tool" />
+						<name value="Video Management" />
+						<url value="system_videos.jsp" />
+						<description value="Video management." />
+					</link>
+					<link>
+						<type value="course_tool" />
+						<name value="Video Management" />
+						<url value="course_videos.jsp" />
+						<description value="Video management." />
+					</link>
+					<link>
+						<type value="tool" />
+						<name value="Video Management" />
+						<url value="course_videos.jsp" />
+						<description value="Video management." />
+					</link>
+				</links>
+			</application>
+		</application-defs>
 		<permissions>
 			<permission type="persist" name="*"
 				actions="create,modify,delete,persist" />

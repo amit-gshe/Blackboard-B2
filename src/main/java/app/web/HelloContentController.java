@@ -5,11 +5,14 @@ import java.nio.charset.Charset;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StreamUtils;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,31 +27,23 @@ import blackboard.persist.content.ContentDbPersister;
 import blackboard.platform.spring.beans.annotations.ContextValue;
 import blackboard.platform.spring.web.annotations.NoXSRF;
 
+@Validated
 @Controller
 @RequestMapping("/item")
 public class HelloContentController {
 
   private static Logger logger = LoggerFactory.getLogger(HelloContentController.class);
 
-  @RequestMapping(path = "/createPage", method = RequestMethod.GET)
-  public String createContentPage() {
-    return "item/create";
+  @RequestMapping(path = "/page/{action}", method = RequestMethod.GET)
+  public String createContentPage(@PathVariable @NotBlank String action) {
+    String view = "item/%s";
+    return String.format(view, action);
   }
 
-  @RequestMapping(path = "/editPage", method = RequestMethod.GET)
-  public String editContentPage() {
-    return "item/edit";
-  }
-  
-  @RequestMapping(path= "/viewPage", method= RequestMethod.GET)
-  public String viewContentPage(){
-    return "item/view";
-  }
-
-  @Transactional
   @NoXSRF
   @RequestMapping(path = "/create", method = RequestMethod.POST)
-  public String createContent(@ContextValue User currentUser, @ContextValue Content parentContent,
+  @Transactional
+  public String create(@ContextValue User currentUser, @ContextValue Content parentContent,
       @ContextValue Course course, @RequestParam String name, @RequestParam String body,
       HttpServletRequest request) throws Exception {
     String redirectParams = "?course_id=%s&content_id=%s";
