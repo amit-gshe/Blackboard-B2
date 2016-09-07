@@ -13,7 +13,6 @@ import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import blackboard.base.FormattedText;
 import blackboard.data.ValidationException;
@@ -49,14 +48,15 @@ public class HelloContentController {
   @Transactional
   @NoXSRF
   @RequestMapping(path = "/create", method = RequestMethod.POST)
-  @ResponseBody
-  public void createContent(@ContextValue User currentUser, @ContextValue Content parentContent,
+  public String createContent(@ContextValue User currentUser, @ContextValue Content parentContent,
       @ContextValue Course course, @RequestParam String name, @RequestParam String body,
       HttpServletRequest request) throws Exception {
+    String redirectParams = "?course_id=%s&content_id=%s";
     try {
       logger.debug("context user: {}", currentUser.getUserName());
       logger.debug("course: {}", course.getId().getExternalString());
       logger.debug("parent content: {}", parentContent.getId().getExternalString());
+      redirectParams = String.format(redirectParams, course.getId().getExternalString(),parentContent.getId().getExternalString());
       // test
       InputStream is = getClass().getResourceAsStream("/template.html");
       body = StreamUtils.copyToString(is, Charset.defaultCharset());
@@ -74,6 +74,7 @@ public class HelloContentController {
       content.setUrl("http://www.baidu.com");
       content.validate();
       ContentDbPersister.Default.getInstance().persist(content);
+      
     } catch (ValidationException e) {
       logger.warn("Content validation failed: {}\n    cause:{}", e.getMessage(), e.getCause());
     } catch (PersistenceException e) {
@@ -82,6 +83,7 @@ public class HelloContentController {
       logger.warn("internal error: {}\n    cause:{}", e.getMessage(), e.getCause());
       throw e;
     }
+    return "redirect:../../blackboard/content/listContentEditable.jsp"+redirectParams;
   }
 
 }
