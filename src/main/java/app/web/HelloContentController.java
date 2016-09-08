@@ -1,9 +1,8 @@
 package app.web;
 
+import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.Charset;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.slf4j.Logger;
@@ -16,14 +15,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import blackboard.base.FormattedText;
 import blackboard.data.ValidationException;
 import blackboard.data.content.Content;
+import blackboard.data.content.ContentFile;
 import blackboard.data.course.Course;
 import blackboard.data.user.User;
 import blackboard.persist.PersistenceException;
 import blackboard.persist.content.ContentDbPersister;
+import blackboard.persist.content.ContentFileDbPersister;
+import blackboard.platform.contentsystem.manager.DocumentManager;
+import blackboard.platform.contentsystem.service.ContentSystemServiceExFactory;
+import blackboard.platform.coursecontent.CourseContentManagerFactory;
 import blackboard.platform.spring.beans.annotations.ContextValue;
 import blackboard.platform.spring.web.annotations.NoXSRF;
 
@@ -44,30 +49,50 @@ public class HelloContentController {
   @RequestMapping(path = "/create", method = RequestMethod.POST)
   @Transactional
   public String create(@ContextValue User currentUser, @ContextValue Content parentContent,
-      @ContextValue Course course, @RequestParam String name, @RequestParam String body,
-      HttpServletRequest request) throws Exception {
+      @ContextValue Course course, @RequestParam @NotBlank String videoName, @RequestParam String body,
+      @RequestParam("videoFile") MultipartFile file) throws Exception {
     String redirectParams = "?course_id=%s&content_id=%s";
     try {
       logger.debug("context user: {}", currentUser.getUserName());
       logger.debug("course: {}", course.getId().getExternalString());
       logger.debug("parent content: {}", parentContent.getId().getExternalString());
       redirectParams = String.format(redirectParams, course.getId().getExternalString(),parentContent.getId().getExternalString());
-      // test
-      InputStream is = getClass().getResourceAsStream("/template.html");
-      body = StreamUtils.copyToString(is, Charset.defaultCharset());
       
-      FormattedText fmt = FormattedText.toFormattedText(body);
+      // handle the file uploading
+      File f = File.createTempFile("temp", "tmp");
+      file.transferTo(f);
+      long fileSize = f.length();
+      String fileName = videoName;
+      logger.debug("uploaded file: {}, size: {}",fileName,fileSize);
+      
+      
       Content content = new Content();
       content.setCourseId(course.getId());
       content.setParentId(parentContent.getId());
       content.setIsAvailable(true);
       content.setIsTracked(true);
       content.setContentHandler("resource/x-cx-video");
-      content.setTitle(name);
-      content.setBody(fmt);
+      content.setTitle(videoName);
       content.setLaunchInNewWindow(true);
       content.setUrl("http://www.baidu.com");
       content.validate();
+      ContentDbPersister.Default.getInstance().persist(content);
+      
+      // Save the file
+      String csLocation = ContentSystemServiceExFactory.getInstance().getDocumentManagerEx().getHomeDirectory(course);
+      ContentFile cf = CourseContentManagerFactory.getInstance().addAttachedLocalFileAsContentFile(content, f, csLocation, fileName, fileName,ContentFile.Action.EMBED, DocumentManager.DuplicateFileHandling.Rename);
+      ContentFileDbPersister.Default.getInstance().persist(cf);
+      
+      String url = ContentSystemServiceExFactory.getInstance().getDocumentManagerEx().getRelativeWebDAVURI(cf.getName());
+      logger.debug("content url: {}",url);
+      
+      // test
+      InputStream is = getClass().getResourceAsStream("/template.html");
+      body = StreamUtils.copyToString(is, Charset.defaultCharset());
+      
+      FormattedText fmt = FormattedText.toFormattedText(String.format(body, url));
+      content.setBody(fmt);
+      content.setUrl(url);
       ContentDbPersister.Default.getInstance().persist(content);
       
     } catch (ValidationException e) {

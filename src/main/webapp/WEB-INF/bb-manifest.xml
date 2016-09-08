@@ -62,7 +62,8 @@
 			</content-handler>
 		</content-handlers>
 		<application-defs>
-			<application handle="cx-video-management" is-course-tool="true" is-sys-tool="true" use-ssl="false" can-allow-guest="false"
+			<application handle="cx-video-management" is-course-tool="true"
+				is-sys-tool="true" use-ssl="false" can-allow-guest="false"
 				name="Video Management">
 				<description>Video management</description>
 				<links>
@@ -106,6 +107,8 @@
 			<permission type="java.lang.RuntimePermission" name="getenv.spring.liveBeansView.mbeanDomain" />
 			<permission type="java.io.FilePermission" name="${java.home}/lib/*"
 				actions="read" />
+			<permission type="java.io.FilePermission" name="&lt;&lt;ALL FILES&gt;&gt;"
+				actions="read,write,delete" />
 		</permissions>
 
 	</plugin>

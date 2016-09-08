@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context" 
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans
@@ -25,15 +23,15 @@
 				class="blackboard.platform.spring.web.resolvers.DefaultArgumentResolver" />
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
-	<mvc:default-servlet-handler/>
-	
-	<websocket:handlers>
-        <websocket:mapping path="/ws" handler="myHandler"/>
-        <websocket:sockjs/>
-    </websocket:handlers>
+	<mvc:default-servlet-handler />
 
-    <bean id="myHandler" class="app.web.HelloWebSocketHandler"/>
-	
+	<websocket:handlers>
+		<websocket:mapping path="/ws" handler="myHandler" />
+		<websocket:sockjs />
+	</websocket:handlers>
+
+	<bean id="myHandler" class="app.web.HelloWebSocketHandler" />
+
 	<bean id="methodValidationPostProcessor"
 		class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"></bean>
 
@@ -52,6 +50,13 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="2" />
 		<property name="contentType" value="text/html; charset=UTF-8" />
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- one of the properties available; the maximum file size in bytes -->
+		<property name="maxUploadSize" value="1000000000" />
+
 	</bean>
 
 </beans>
