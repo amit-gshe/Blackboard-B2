@@ -1,21 +1,26 @@
 package app.web;
 
 import java.io.File;
-import java.io.InputStream;
-import java.nio.charset.Charset;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StreamUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ViewResolver;
 
 import blackboard.base.FormattedText;
 import blackboard.data.ValidationException;
@@ -39,6 +44,9 @@ public class HelloContentController {
 
   private static Logger logger = LoggerFactory.getLogger(HelloContentController.class);
 
+  @Autowired
+  ViewResolver viewResovler;
+  
   @RequestMapping(path = "/page/{action}", method = RequestMethod.GET)
   public String createContentPage(@PathVariable @NotBlank String action) {
     String view = "item/%s";
@@ -49,8 +57,8 @@ public class HelloContentController {
   @RequestMapping(path = "/create", method = RequestMethod.POST)
   @Transactional
   public String create(@ContextValue User currentUser, @ContextValue Content parentContent,
-      @ContextValue Course course, @RequestParam @NotBlank String videoName, @RequestParam String body,
-      @RequestParam("videoFile") MultipartFile file) throws Exception {
+      @ContextValue Course course, @RequestParam @NotBlank String videoName,
+      @RequestParam("videoFile") MultipartFile file, HttpServletRequest request, HttpServletResponse response, Map<String, Object> model) throws Exception {
     String redirectParams = "?course_id=%s&content_id=%s";
     try {
       logger.debug("context user: {}", currentUser.getUserName());
@@ -61,10 +69,10 @@ public class HelloContentController {
       // handle the file uploading
       File f = File.createTempFile("temp", "tmp");
       file.transferTo(f);
-      long fileSize = f.length();
-      String fileName = videoName;
-      logger.debug("uploaded file: {}, size: {}",fileName,fileSize);
       
+      long fileSize = f.length();
+      String fileName = file.getOriginalFilename();
+      logger.debug("uploaded file: {}, size: {}",fileName,fileSize);
       
       Content content = new Content();
       content.setCourseId(course.getId());
@@ -87,10 +95,12 @@ public class HelloContentController {
       logger.debug("content url: {}",url);
       
       // test
-      InputStream is = getClass().getResourceAsStream("/template.html");
-      body = StreamUtils.copyToString(is, Charset.defaultCharset());
-      
-      FormattedText fmt = FormattedText.toFormattedText(String.format(body, url));
+      model.put("url", url);
+      MockHttpServletResponse mockResp = new MockHttpServletResponse();
+      viewResovler.resolveViewName("item/body", Locale.getDefault()).render(model, request, mockResp);
+      String body = mockResp.getContentAsString();
+      logger.debug("generated html: {}",body);    
+      FormattedText fmt = FormattedText.toFormattedText(body);
       content.setBody(fmt);
       content.setUrl(url);
       ContentDbPersister.Default.getInstance().persist(content);

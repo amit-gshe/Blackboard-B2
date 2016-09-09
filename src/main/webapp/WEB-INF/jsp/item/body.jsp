@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <div style="margin-top: 15px; word-wrap: break-word;">
 	<!-- <a
 		onclick="this.href='/webapps/blackboard/content/contentWrapper.jsp?content_id=_62_1&amp;displayName=Linked+File&amp;navItem=content&amp;attachment=true&amp;course_id=_2_1&amp;tab_group=courses&amp;href=http%3a%2f%2fwww.tudou.com%2fa%2f9jydhoFFyUE%2f%26iid%3d132762491%26resourceId%3d0_04_05_99%2fv.swf';"
@@ -12,7 +13,7 @@
 			Watch Video </span>
 	</a> -->
 	<a target="view_window" style="text-align: center; text-decoration: none; color: #333; float: left; width: 150px; background: #000; border: 1px solid #bbb; display: block;"
-		href="%s"
+		href="${url}"
 		title="百度一下"> <img
 		src="http://g.hiphotos.baidu.com/image/h%3D200/sign=8f4a3608ce177f3e0f34fb0d40ce3bb9/faedab64034f78f0a9b43e4d7e310a55b2191cd4.jpg"
 		alt="" width="120"> <span
