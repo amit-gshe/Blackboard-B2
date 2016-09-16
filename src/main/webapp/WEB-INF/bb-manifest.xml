@@ -110,6 +110,6 @@
 			<permission type="java.io.FilePermission" name="&lt;&lt;ALL FILES&gt;&gt;"
 				actions="read,write,delete" />
 		</permissions>
-
+	<requires-bean-introspection value="true"/>
 	</plugin>
 </manifest>
