@@ -45,7 +45,7 @@
 			<bbNG:pageTitleBar title="添加测验"></bbNG:pageTitleBar>
 		</bbNG:pageHeader>
 		<form
-			action="<%=URL%>item/create?course_id=<%=cxCtx.getCourseId().toExternalString()%>&content_id=<%=cxCtx.getContentId().toExternalString()%>"
+			action="<%=URL%>assessment/create?course_id=<%=cxCtx.getCourseId().toExternalString()%>&content_id=<%=cxCtx.getContentId().toExternalString()%>"
 			method="post">
 			<bbNG:dataCollection>
 				<bbNG:step title="测验信息">

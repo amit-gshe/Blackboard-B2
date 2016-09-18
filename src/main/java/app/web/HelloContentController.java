@@ -106,11 +106,11 @@ public class HelloContentController {
       ContentDbPersister.Default.getInstance().persist(content);
       
     } catch (ValidationException e) {
-      logger.warn("Content validation failed: {}\n    cause:{}", e.getMessage(), e.getCause());
+      logger.warn("Content validation failed!", e);
     } catch (PersistenceException e) {
-      logger.warn("Content persistent failed: {}\n    cause:{}", e.getMessage(), e.getCause());
+      logger.warn("Content persistent failed!", e);
     } catch (Exception e) {
-      logger.warn("internal error: {}\n    cause:{}", e.getMessage(), e.getCause());
+      logger.warn("Unexpected error!", e);
       throw e;
     }
     return "redirect:../../blackboard/content/listContentEditable.jsp"+redirectParams;
