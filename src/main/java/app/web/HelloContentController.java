@@ -104,7 +104,7 @@ public class HelloContentController {
       content.setBody(fmt);
       content.setUrl(url);
       ContentDbPersister.Default.getInstance().persist(content);
-      
+      f.delete();
     } catch (ValidationException e) {
       logger.warn("Content validation failed!", e);
     } catch (PersistenceException e) {

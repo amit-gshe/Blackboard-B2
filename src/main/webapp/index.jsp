@@ -4,8 +4,6 @@
 <%@ taglib uri="/bbUI" prefix="bbUI"%>
 <%@ taglib uri="/bbData" prefix="bbData"%>
 
-<% String URL = PlugInUtil.getUri("cx", "springdemo", ""); %>
-
 <bbNG:learningSystemPage>
 	<bbNG:breadcrumbBar>
 		<bbNG:breadcrumb>Create Item</bbNG:breadcrumb>
@@ -24,5 +22,4 @@
 		<li><a href="rest?key=key1&value=value1">REST Example</a></li>
 		<li><a href="websocket">WebSocket Example</a></li>
 	</ul>
-	<img src="<%= URL %>assets/img/face.png" />
 </bbNG:learningSystemPage>
