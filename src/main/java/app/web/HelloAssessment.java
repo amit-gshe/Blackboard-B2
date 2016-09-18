@@ -49,6 +49,7 @@ public class HelloAssessment {
       item.setCourseId(course.getId());
       item.setName(name);
       item.setPointsPossible(100);
+      item.setType("Test assessment");
       item.validate();
       LineitemDbPersister.Default.getInstance().persist(item);
     } catch (PersistenceException e) {
@@ -56,7 +57,7 @@ public class HelloAssessment {
     } catch (ValidationException e) {
       logger.error("Validate failed!",e);
     } catch(Exception e){
-      logger.error("Unexpected error!",e);
+      logger.error("Unexpected exception!",e);
     }
     return "redirect:../../blackboard/content/listContentEditable.jsp" + redirectParams;
   }
