@@ -41,13 +41,13 @@
 				</types>
 			</content-handler>
 			<content-handler>
-				<name value="Video Assignment" />
+				<name value="Video Assessment" />
 				<handle value="resource/x-cx-video-assignment" />
 				<http-actions>
-					<create value="/assignment/page/create" />
-					<modify value="/assignment/page/modify" />
-					<remove value="/assignment/page/remove" />
-					<view value="/assignment/page/view" />
+					<create value="/assessment/page/create" />
+					<modify value="/assessment/page/modify" />
+					<remove value="/assessment/page/remove" />
+					<view value="/assessment/page/view" />
 					<can-copy value="false" />
 				</http-actions>
 				<icons>
@@ -100,6 +100,7 @@
 				beans together and Hibernate to interact with objects. -->
 			<permission type="java.lang.reflect.ReflectPermission"
 				name="suppressAccessChecks" />
+			<permission type="persist" name="OutcomeDefinition" actions="create,modify,delete"/>
 			<permission type="java.lang.RuntimePermission" name="accessDeclaredMembers" />
 			<permission type="java.lang.RuntimePermission" name="createClassLoader" />
 			<permission type="java.lang.RuntimePermission" name="setContextClassLoader" />
