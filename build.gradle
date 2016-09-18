@@ -13,7 +13,7 @@ eclipse {
 }
 ext {
   learnVersion = "9.1.201510.1171621"
-  springVersion = "4.2.5.RELEASE"
+  springVersion = "4.3.2.RELEASE"
   hibernateVersion = "5.2.2.Final"
 }
 
