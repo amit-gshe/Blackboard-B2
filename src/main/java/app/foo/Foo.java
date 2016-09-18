@@ -1,10 +1,11 @@
-package app.model;
+package app.foo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -12,7 +13,8 @@ import javax.persistence.Table;
 public class Foo {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="cx_springdemo_foo_seq")
+  @SequenceGenerator(name = "cx_springdemo_foo_seq", sequenceName = "cx_springdemo_foo_seq")
   @Column(name = "foo_id")
   private Long id;
   

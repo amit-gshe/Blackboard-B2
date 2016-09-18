@@ -21,7 +21,7 @@
 		<property name="dataSource" ref="hibernateDataSource" />
 		<property name="packagesToScan">
 			<list>
-				<value>app.model</value>
+				<value>app</value>
 			</list>
 		</property>
 		

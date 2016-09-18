@@ -1,4 +1,4 @@
-package app.web;
+package app.course;
 
 import java.util.LinkedList;
 import java.util.List;

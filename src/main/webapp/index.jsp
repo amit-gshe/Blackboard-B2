@@ -14,7 +14,6 @@
 			showIcon="true"></bbNG:pageTitleBar>
 	</bbNG:pageHeader>
 	<ul>
-		<li><a href="helloWorld">Hello World</a>
 		<li><a href="hello">Learn API Example</a>
 		<li><a href="course_users?cid=_2_1">Advanced Learn API
 				Example</a>

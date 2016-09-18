@@ -30,7 +30,7 @@
 		<websocket:sockjs />
 	</websocket:handlers>
 
-	<bean id="myHandler" class="app.web.HelloWebSocketHandler" />
+	<bean id="myHandler" class="app.websocket.HelloWebSocketHandler" />
 
 	<bean id="methodValidationPostProcessor"
 		class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"></bean>

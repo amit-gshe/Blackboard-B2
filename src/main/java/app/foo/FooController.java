@@ -1,4 +1,4 @@
-package app.web;
+package app.foo;
 
 import java.util.List;
 
@@ -8,11 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import app.model.Foo;
-import app.service.FooService;
-
 @Controller
-public class HelloFooController {
+public class FooController {
 
   @Autowired
   FooService fooService;

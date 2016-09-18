@@ -1,8 +1,6 @@
-package app.service;
+package app.foo;
 
 import java.util.List;
-
-import app.model.Foo;
 
 public interface FooService {
 

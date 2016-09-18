@@ -6,7 +6,7 @@
   <comment>This schema contains tables related to the Spring Demo.</comment>
 
   <table name="cx_springdemo_foo">
-    <column name="foo_id" data-type="int" nullable="false" identity="true" comment="This is the surrogate primary key for the table." />
+    <column name="foo_id" data-type="int" nullable="false" identity="true" sequence="cx_springdemo_foo_seq" comment="This is the surrogate primary key for the table." />
     <column name="name" data-type="nvarchar(256)" nullable="false" />
     <column name="value" data-type="nvarchar(256)" nullable="false" />
     <primary-key name="cx_springdemo_foo_pk" comment="This is the name of primary key constraint on column foo_id.">

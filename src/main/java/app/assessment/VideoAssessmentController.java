@@ -1,4 +1,4 @@
-package app.web;
+package app.assessment;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,9 +26,9 @@ import blackboard.platform.spring.web.annotations.NoXSRF;
 @Validated
 @Controller
 @RequestMapping("/assessment")
-public class HelloAssessment {
+public class VideoAssessmentController {
 
-  private static Logger logger = LoggerFactory.getLogger(HelloAssessment.class);
+  private static Logger logger = LoggerFactory.getLogger(VideoAssessmentController.class);
   
   @RequestMapping(path = "/page/{action}", method = RequestMethod.GET)
   public String createPage(@PathVariable @NotBlank String action) {

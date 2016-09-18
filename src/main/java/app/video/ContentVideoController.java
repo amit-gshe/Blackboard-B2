@@ -1,4 +1,4 @@
-package app.web;
+package app.video;
 
 import java.io.File;
 import java.util.Locale;
@@ -40,9 +40,9 @@ import blackboard.platform.spring.web.annotations.NoXSRF;
 @Validated
 @Controller
 @RequestMapping("/item")
-public class HelloContentController {
+public class ContentVideoController {
 
-  private static Logger logger = LoggerFactory.getLogger(HelloContentController.class);
+  private static Logger logger = LoggerFactory.getLogger(ContentVideoController.class);
 
   @Autowired
   ViewResolver viewResovler;

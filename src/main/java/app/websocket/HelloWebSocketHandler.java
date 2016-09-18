@@ -1,4 +1,4 @@
-package app.web;
+package app.websocket;
 
 import java.util.Date;
 import java.util.Map;

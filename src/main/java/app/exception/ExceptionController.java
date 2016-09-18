@@ -1,4 +1,4 @@
-package app.web;
+package app.exception;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class ExceptionControllerAdvice {
+public class ExceptionController {
 
   @ExceptionHandler(ConstraintViolationException.class)
   @ResponseBody

@@ -1,4 +1,4 @@
-package app.web;
+package app.rest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
