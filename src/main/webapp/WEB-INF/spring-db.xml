@@ -19,11 +19,12 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="hibernateDataSource" />
-		<property name="annotatedClasses">
+		<property name="packagesToScan">
 			<list>
-				<value>app.model.Foo</value>
+				<value>app.model</value>
 			</list>
 		</property>
+		
 		<property name="hibernateProperties">
 			<value>
 				hibernate.show_sql=true
