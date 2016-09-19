@@ -1,6 +1,8 @@
 package app.video;
 
 import java.io.File;
+import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,4 +21,8 @@ public interface ContentItemService {
   public ContentFile addContentFile(Course course, Content content, File tempFile, String saveName) throws PersistenceException, ValidationException, FileSystemException;
 
   public void setVideoAsContentBody(Content content, ContentFile contentFile, HttpServletRequest request) throws Exception;
+
+  public List<Content> loadCourseContents(Id courseId) throws PersistenceException;
+
+  public Collection<ContentFile> loadContentFiles(Id id) throws PersistenceException;
 }
