@@ -106,6 +106,9 @@
 			<permission type="java.lang.RuntimePermission" name="setContextClassLoader" />
 			<permission type="java.lang.RuntimePermission" name="getProtectionDomain" />
 			<permission type="java.lang.RuntimePermission" name="getenv.spring.liveBeansView.mbeanDomain" />
+			<permission type="java.lang.RuntimePermission" name="getenv.spring.profiles.active" />
+			<permission type="java.lang.RuntimePermission" name="getenv.spring.profiles.default" />
+			<permission type="java.lang.RuntimePermission" name="modifyThread" />
 			<permission type="java.io.FilePermission" name="${java.home}/lib/*"
 				actions="read" />
 			<permission type="java.io.FilePermission" name="&lt;&lt;ALL FILES&gt;&gt;"
