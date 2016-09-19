@@ -26,13 +26,13 @@
 				<name value="Video Tool" />
 				<handle value="resource/x-cx-video" />
 				<http-actions>
-					<create value="/item/page/create" />
-					<modify value="/item/page/modify" />
-					<view value="/item/page/view" />
+					<create value="item/page/create" />
+					<modify value="item/page/modify" />
+					<view value="item/page/view" />
 				</http-actions>
 				<icons>
-					<toolbar value="/assets/img/item_logo.png" />
-					<listitem value="/assets/img/item_logo.png" />
+					<toolbar value="assets/img/item_logo.png" />
+					<listitem value="assets/img/item_logo.png" />
 				</icons>
 				<types>
 					<type>
@@ -44,15 +44,15 @@
 				<name value="Video Assessment" />
 				<handle value="resource/x-cx-video-assignment" />
 				<http-actions>
-					<create value="/assessment/page/create" />
-					<modify value="/assessment/page/modify" />
-					<remove value="/assessment/page/remove" />
-					<view value="/assessment/page/view" />
+					<create value="assessment/page/create" />
+					<modify value="assessment/page/modify" />
+					<remove value="assessment/page/remove" />
+					<view value="assessment/page/view" />
 					<can-copy value="false" />
 				</http-actions>
 				<icons>
-					<toolbar value="/assets/img/item_logo.png" />
-					<listitem value="/assets/img/item_logo.png" />
+					<toolbar value="assets/img/item_logo.png" />
+					<listitem value="assets/img/item_logo.png" />
 				</icons>
 				<types>
 					<type>
@@ -76,13 +76,13 @@
 					<link>
 						<type value="course_tool" />
 						<name value="Video Management" />
-						<url value="course_videos.jsp" />
+						<url value="videos" />
 						<description value="Video management." />
 					</link>
 					<link>
 						<type value="tool" />
 						<name value="Video Management" />
-						<url value="course_videos.jsp" />
+						<url value="videos" />
 						<description value="Video management." />
 					</link>
 				</links>
